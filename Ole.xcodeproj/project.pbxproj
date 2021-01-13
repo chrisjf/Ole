@@ -45,6 +45,8 @@
 		834B6E3F25AE899000D027A2 /* OleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		834B6E4325AE899000D027A2 /* OleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OleUITests.swift; sourceTree = "<group>"; };
 		834B6E4525AE899000D027A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		834B6E5525AE89B400D027A2 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		834B6E5A25AE89BC00D027A2 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 				834B6E3725AE899000D027A2 /* OleTests */,
 				834B6E4225AE899000D027A2 /* OleUITests */,
 				834B6E2425AE898E00D027A2 /* Products */,
+				834B6E5425AE899B00D027A2 /* Supporting Files */,
 			);
 			sourceTree = "<group>";
 		};
@@ -130,6 +133,15 @@
 			path = OleUITests;
 			sourceTree = "<group>";
 		};
+		834B6E5425AE899B00D027A2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				834B6E5525AE89B400D027A2 /* .gitignore */,
+				834B6E5A25AE89BC00D027A2 /* .swiftlint.yml */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -140,6 +152,7 @@
 				834B6E1F25AE898E00D027A2 /* Sources */,
 				834B6E2025AE898E00D027A2 /* Frameworks */,
 				834B6E2125AE898E00D027A2 /* Resources */,
+				834B6E6925AE8A2200D027A2 /* Run SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -157,6 +170,7 @@
 				834B6E3025AE899000D027A2 /* Sources */,
 				834B6E3125AE899000D027A2 /* Frameworks */,
 				834B6E3225AE899000D027A2 /* Resources */,
+				834B6E6525AE89E300D027A2 /* Run SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -253,6 +267,45 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		834B6E6525AE89E300D027A2 /* Run SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run SwiftLint";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint autocorrect\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+		834B6E6925AE8A2200D027A2 /* Run SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run SwiftLint";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint autocorrect\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		834B6E1F25AE898E00D027A2 /* Sources */ = {
@@ -429,7 +482,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ca.christophe.Ole;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -450,7 +503,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ca.christophe.Ole;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
