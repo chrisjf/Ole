@@ -16,7 +16,7 @@ struct GameplayButton: View {
 
     var body: some View {
         Button(action: action, label: {
-            HStack (alignment: .center, spacing: 1) {
+            HStack (alignment: .center, spacing: 2) {
                 icon
                     .font(Font.system(.title2).bold())
                     .imageScale(.small)
@@ -24,13 +24,13 @@ struct GameplayButton: View {
                     .font(.title2)
                     .fontWeight(.bold)
             }
+            .foregroundColor(.white)
+            .frame(maxWidth: .infinity)
+            .lineSpacing(4)
+            .padding()
+            .background(LinearGradient(gradient: Gradient(colors: [backgroundColor.opacity(0.8), backgroundColor]), startPoint: .top, endPoint: .bottom))
+            .cornerRadius(16)
         })
-        .foregroundColor(.white)
-        .frame(maxWidth: .infinity)
-        .lineSpacing(4)
-        .padding()
-        .background(LinearGradient(gradient: Gradient(colors: [backgroundColor.opacity(0.8), backgroundColor]), startPoint: .top, endPoint: .bottom))
-        .cornerRadius(16)
     }
 
 }

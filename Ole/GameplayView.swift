@@ -9,60 +9,114 @@ import SwiftUI
 
 struct GameplayView: View {
 
+    @Binding var isMenuShown: Bool
+
     @ObservedObject var gameplayController = GameplayController()
+    @State private var fallingTextViewId = 0
+    @State private var isSummaryAlertShown: Bool = false
 
     var body: some View {
-        VStack {
-            HStack {
-                Spacer()
-                VStack(alignment: .trailing) {
-                    Text(String(format: NSLocalizedString("game.view.correct.attempts", value: "Correct Attempts: %d", comment: "Game view label"), gameplayController.scoreboard.correctAttempts))
-                    Text(String(format: NSLocalizedString("game.view.incorrect.attempts", value: "Wrong Attempts: %d", comment: "Game view label"), gameplayController.scoreboard.incorrectAttempts))
+        ZStack(alignment: .top) {
+
+            VStack {
+                HStack {
+                    Spacer()
+                    VStack(alignment: .trailing) {
+                        Text(String(format: NSLocalizedString("gameplay.view.correct.attempts", value: "Correct Attempts: %d", comment: "Gameplay view label"), gameplayController.scoreboard.correctAttempts))
+                        Text(String(format: NSLocalizedString("gameplay.view.incorrect.attempts", value: "Wrong Attempts: %d", comment: "Gameplay view label"), gameplayController.scoreboard.incorrectAttempts))
+                    }
+                    .font(.callout)
+                    .padding()
                 }
-                .font(.callout)
+
+                Spacer()
+
+                if !isSummaryAlertShown {
+                    Text(gameplayController.currentWordPair.english)
+                        .font(.title2)
+                        .fontWeight(.semibold)
+                        .multilineTextAlignment(.center)
+                }
+
+                Spacer()
+
+                HStack {
+                    GameplayButton(backgroundColor: .vibrantOrange,
+                                   icon: Image(systemName: "checkmark.circle"),
+                                   title: NSLocalizedString("gameplay.view.correct.button", value: "Correct", comment: "Gameplay view button"),
+                                   action: {
+                                    didTapCorrect()
+                                   })
+
+                    GameplayButton(backgroundColor: .vibrantPink,
+                                   icon: Image(systemName: "xmark.circle"),
+                                   title: NSLocalizedString("gameplay.view.incorrect.button", value: "Wrong", comment: "Gameplay view button"),
+                                   action: {
+                                    didTapIncorrect()
+                                   })
+                }
+                .frame(maxWidth: .infinity)
                 .padding()
             }
 
-            Spacer()
+            FallingTextView(text: gameplayController.currentWordPair.spanish,
+                            isSummaryAlertShown: $isSummaryAlertShown,
+                            viewId: $fallingTextViewId)
 
-            Text(gameplayController.currentWordPair.spanish)
-                .font(.largeTitle)
-                .fontWeight(.semibold)
-                .multilineTextAlignment(.center)
-                .padding(.bottom)
-
-            Text(gameplayController.currentWordPair.english)
-                .font(.title2)
-                .fontWeight(.semibold)
-                .multilineTextAlignment(.center)
-
-            Spacer()
-
-            HStack {
-                GameplayButton(backgroundColor: .vibrantOrange,
-                               icon: Image(systemName: "checkmark.circle"),
-                               title: NSLocalizedString("game.view.correct.button", value: "Correct", comment: "Game view button"),
-                               action: {
-                                gameplayController.tappedCorrectForCurrentWordPair()
-                               })
-
-                GameplayButton(backgroundColor: .vibrantPink,
-                               icon: Image(systemName: "xmark.circle"),
-                               title: NSLocalizedString("game.view.incorrect.button", value: "Wrong", comment: "Game view button"),
-                               action: {
-                                gameplayController.tappedIncorrectForCurrentWordPair()
-                               })
-            }
-            .frame(maxWidth: .infinity)
-            .padding()
         }
         .background(LinearGradient(gradient: Gradient(colors: [Color.pastelYellow, Color.vibrantYellow]), startPoint: .top, endPoint: .bottom).edgesIgnoringSafeArea(.all))
+        .modifier(SummaryAlert(isSummaryAlertShown: $isSummaryAlertShown,
+                               didUserWin: didUserWin,
+                               correctAttempts: gameplayController.scoreboard.correctAttempts,
+                               incorrectAttempts: gameplayController.scoreboard.incorrectAttempts,
+                               quitAction: didTapQuit,
+                               restartAction: didTapRestart))
+        .onChange(of: gameplayController.scoreboard.gameState) { newValue in
+            guard gameplayController.scoreboard.gameState != .inProgress else {
+                return
+            }
+            isSummaryAlertShown = true
+            gameplayController.stopGameplay()
+        }
+    }
+
+    private var didUserWin: Bool {
+        return gameplayController.scoreboard.gameState == .userWon
+    }
+
+    private func refreshFallingAnimation() {
+        // updating the view id will force SwiftUI to create a new view, thus resetting the view's position and animation
+        fallingTextViewId += 1
+    }
+
+    func didTapCorrect() {
+        gameplayController.tappedCorrectForCurrentWordPair()
+        refreshFallingAnimation()
+    }
+
+    func didTapIncorrect() {
+        gameplayController.tappedIncorrectForCurrentWordPair()
+        refreshFallingAnimation()
+    }
+
+    func didTapQuit() {
+        gameplayController.stopGameplay()
+        gameplayController.resetGameplay()
+        withAnimation(Animation.easeInOut(duration: 1.0)) {
+            isMenuShown.toggle()
+        }
+    }
+
+    func didTapRestart() {
+        gameplayController.resetGameplay()
+        gameplayController.startGameplay()
+        refreshFallingAnimation()
     }
 
 }
 
-struct GameView_Previews: PreviewProvider {
+struct GameplayView_Previews: PreviewProvider {
     static var previews: some View {
-        GameplayView()
+        GameplayView(isMenuShown: .constant(false))
     }
 }

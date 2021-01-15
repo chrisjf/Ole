@@ -24,7 +24,21 @@ class GameplayController: ObservableObject {
         self.wordPairManager = wordPairManager
         self.currentWordPair = wordPairManager.newWordPair()
 
+        startGameplay()
+    }
+
+    func startGameplay() {
+        scoreboard.startGame()
         resetTimer()
+    }
+
+    func stopGameplay() {
+        gameplayTimerSubscription = nil
+    }
+
+    func resetGameplay() {
+        scoreboard.resetScore()
+        pickNewWordPair()
     }
 
     func tappedCorrectForCurrentWordPair() {

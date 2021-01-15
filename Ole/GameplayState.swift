@@ -8,6 +8,7 @@
 import Foundation
 
 enum GameplayState {
+    case none
     case inProgress
     case userLost
     case userWon

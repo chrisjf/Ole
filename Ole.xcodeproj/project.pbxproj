@@ -29,8 +29,12 @@
 		8350DABA25B0DD1C00FC6124 /* GameplayState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8350DAB925B0DD1C00FC6124 /* GameplayState.swift */; };
 		8350DABF25B0E20C00FC6124 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8350DABE25B0E20C00FC6124 /* MenuView.swift */; };
 		8350DAC725B0F6BA00FC6124 /* ContentViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8350DAC625B0F6BA00FC6124 /* ContentViewTests.swift */; };
+		8350DAD525B14F0100FC6124 /* GameplayViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8350DAD425B14F0100FC6124 /* GameplayViewTests.swift */; };
+		8350DADA25B16B4900FC6124 /* FallingTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8350DAD925B16B4900FC6124 /* FallingTextView.swift */; };
 		837F621225AFDB8A00370A61 /* GameplayControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837F621125AFDB8A00370A61 /* GameplayControllerTests.swift */; };
 		837F622025AFEC5E00370A61 /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837F621F25AFEC5E00370A61 /* Color+Extensions.swift */; };
+		83E5838525B17C4900785976 /* FallingTextViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E5838425B17C4900785976 /* FallingTextViewTests.swift */; };
+		83E5838A25B17D7300785976 /* SummaryAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E5838925B17D7300785976 /* SummaryAlertView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,8 +85,12 @@
 		8350DAB925B0DD1C00FC6124 /* GameplayState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameplayState.swift; sourceTree = "<group>"; };
 		8350DABE25B0E20C00FC6124 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		8350DAC625B0F6BA00FC6124 /* ContentViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewTests.swift; sourceTree = "<group>"; };
+		8350DAD425B14F0100FC6124 /* GameplayViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameplayViewTests.swift; sourceTree = "<group>"; };
+		8350DAD925B16B4900FC6124 /* FallingTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FallingTextView.swift; sourceTree = "<group>"; };
 		837F621125AFDB8A00370A61 /* GameplayControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameplayControllerTests.swift; sourceTree = "<group>"; };
 		837F621F25AFEC5E00370A61 /* Color+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
+		83E5838425B17C4900785976 /* FallingTextViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FallingTextViewTests.swift; sourceTree = "<group>"; };
+		83E5838925B17D7300785976 /* SummaryAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummaryAlertView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,8 +145,11 @@
 				837F621F25AFEC5E00370A61 /* Color+Extensions.swift */,
 				834B6E2825AE898E00D027A2 /* ContentView.swift */,
 				8350DAC625B0F6BA00FC6124 /* ContentViewTests.swift */,
+				8350DAD925B16B4900FC6124 /* FallingTextView.swift */,
+				83E5838425B17C4900785976 /* FallingTextViewTests.swift */,
 				83459A3825AFAE5600B665A5 /* GameplayButton.swift */,
 				834B6E9525AEBD1A00D027A2 /* GameplayView.swift */,
+				8350DAD425B14F0100FC6124 /* GameplayViewTests.swift */,
 				834B6EAF25AECFB500D027A2 /* GameplayController.swift */,
 				837F621125AFDB8A00370A61 /* GameplayControllerTests.swift */,
 				8350DAB925B0DD1C00FC6124 /* GameplayState.swift */,
@@ -146,6 +157,7 @@
 				834B6E2625AE898E00D027A2 /* OleApp.swift */,
 				834B6E9A25AEC5EE00D027A2 /* Scoreboard.swift */,
 				834B6E9F25AEC62A00D027A2 /* ScoreboardTests.swift */,
+				83E5838925B17D7300785976 /* SummaryAlertView.swift */,
 				834B6E8D25AEB27A00D027A2 /* Translation.swift */,
 				834B6E7025AE8B9000D027A2 /* TranslationsParser.swift */,
 				834B6E7525AE8BA100D027A2 /* TranslationsParserTests.swift */,
@@ -368,6 +380,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8350DABF25B0E20C00FC6124 /* MenuView.swift in Sources */,
+				8350DADA25B16B4900FC6124 /* FallingTextView.swift in Sources */,
+				83E5838A25B17D7300785976 /* SummaryAlertView.swift in Sources */,
 				834B6E2925AE898E00D027A2 /* ContentView.swift in Sources */,
 				834B6EA825AECD5F00D027A2 /* WordPairManager.swift in Sources */,
 				834B6E7125AE8B9000D027A2 /* TranslationsParser.swift in Sources */,
@@ -387,8 +401,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8350DAD525B14F0100FC6124 /* GameplayViewTests.swift in Sources */,
 				834B6E7625AE8BA100D027A2 /* TranslationsParserTests.swift in Sources */,
 				837F621225AFDB8A00370A61 /* GameplayControllerTests.swift in Sources */,
+				83E5838525B17C4900785976 /* FallingTextViewTests.swift in Sources */,
 				834B6E3925AE899000D027A2 /* OleTests.swift in Sources */,
 				8350DAC725B0F6BA00FC6124 /* ContentViewTests.swift in Sources */,
 				8350DAB525B012D700FC6124 /* WordPairTests.swift in Sources */,

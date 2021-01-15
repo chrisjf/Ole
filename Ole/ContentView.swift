@@ -9,24 +9,13 @@ import SwiftUI
 
 struct ContentView: View {
 
-    @ObservedObject private(set) var gameplayController: GameplayController
-    private let gameplayView: GameplayView
-
-    init(gameplayView: GameplayView = GameplayView()) {
-        self.gameplayView = gameplayView
-        self.gameplayController = gameplayView.gameplayController
-    }
-
-    var gameIsCurrentlyInProgress: Bool {
-        return gameplayController.scoreboard.isGameFinished == .inProgress
-    }
+    @State private var isMenuShown = false
 
     var body: some View {
-        if gameIsCurrentlyInProgress {
-            gameplayView
+        if !isMenuShown {
+            GameplayView(isMenuShown: $isMenuShown)
         } else {
-            MenuView(gameState: .init(get: { gameplayController.scoreboard.isGameFinished },
-                                      set: { gameplayController.scoreboard.isGameFinished = $0}))
+            MenuView(isShown: $isMenuShown)
         }
     }
 

@@ -15,5 +15,6 @@ extension Color {
     static let vibrantYellow = Color("VibrantYellow")
     static let vibrantOrange = Color("VibrantOrange")
     static let vibrantPink = Color("VibrantPink")
+    static let purePink = Color("PurePink")
 
 }

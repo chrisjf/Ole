@@ -32,6 +32,45 @@ class GameplayControllerTests: XCTestCase {
         XCTAssertNotNil(controller.gameplayTimerSubscription)
     }
 
+    func testStartGameplay() throws {
+        // Arrange
+        let firstSubscription = controller.gameplayTimerSubscription
+
+        // Act
+        controller.startGameplay()
+
+        // Assert
+        XCTAssertEqual(controller.scoreboard.gameState, .inProgress)
+        XCTAssertNotEqual(controller.gameplayTimerSubscription, firstSubscription)
+    }
+
+    func testStopGameplay() throws {
+        // Arrange
+        XCTAssertNotNil(controller.gameplayTimerSubscription)
+
+        // Act
+        controller.stopGameplay()
+
+        // Assert
+        XCTAssertNil(controller.gameplayTimerSubscription)
+    }
+
+    func testResetGameplay() throws {
+        // Arrange
+        (1...2).forEach { _ in controller.scoreboard.gainedPoint() }
+        (1...2).forEach { _ in controller.scoreboard.lostPoint() }
+        let oldPair = controller.currentWordPair
+
+        // Act
+        controller.resetGameplay()
+
+        // Assert
+        XCTAssertEqual(controller.scoreboard.correctAttempts, 0)
+        XCTAssertEqual(controller.scoreboard.incorrectAttempts, 0)
+        XCTAssertEqual(controller.scoreboard.gameState, .none)
+        XCTAssertNotEqual(controller.currentWordPair, oldPair)
+    }
+
     func testTappedCorrectForCurrentWordPairAndUserAnsweredCorrectly() throws {
         // Arrange
         manager.isCorrect = true

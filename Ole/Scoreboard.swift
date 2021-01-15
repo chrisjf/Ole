@@ -11,11 +11,16 @@ class Scoreboard: ObservableObject {
 
     @Published private(set) var correctAttempts: Int = 0
     @Published private(set) var incorrectAttempts: Int = 0
-    @Published var isGameFinished: GameplayState = .inProgress
+    @Published private(set) var gameState: GameplayState = .none
+
+    func startGame() {
+        gameState = .inProgress
+    }
 
     func resetScore() {
         correctAttempts = 0
         incorrectAttempts = 0
+        gameState = .none
     }
 
     func gainedPoint() {
@@ -30,12 +35,12 @@ class Scoreboard: ObservableObject {
 
     private func shouldGameFinish() {
         guard incorrectAttempts < 3 else {
-            isGameFinished = .userLost
+            gameState = .userLost
             return
         }
 
         guard correctAttempts + incorrectAttempts < 15 else {
-            isGameFinished = .userWon
+            gameState = .userWon
             return
         }
     }

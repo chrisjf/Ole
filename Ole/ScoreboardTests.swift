@@ -24,11 +24,12 @@ class ScoreboardTests: XCTestCase {
         XCTAssertNotNil(scoreboard)
         XCTAssertEqual(scoreboard.correctAttempts, 0)
         XCTAssertEqual(scoreboard.incorrectAttempts, 0)
+        XCTAssertEqual(scoreboard.gameState, .none)
     }
 
     func testGainPoint() throws {
         // Arrange
-        XCTAssertEqual(scoreboard.isGameFinished, .inProgress)
+        scoreboard.startGame()
 
         // Act
         scoreboard.gainedPoint()
@@ -37,12 +38,12 @@ class ScoreboardTests: XCTestCase {
         XCTAssertNotNil(scoreboard)
         XCTAssertEqual(scoreboard.correctAttempts, 1)
         XCTAssertEqual(scoreboard.incorrectAttempts, 0)
-        XCTAssertEqual(scoreboard.isGameFinished, .inProgress)
+        XCTAssertEqual(scoreboard.gameState, .inProgress)
     }
 
     func testLoosePoint() throws {
         // Arrange
-        XCTAssertEqual(scoreboard.isGameFinished, .inProgress)
+        scoreboard.startGame()
 
         // Act
         scoreboard.lostPoint()
@@ -51,7 +52,18 @@ class ScoreboardTests: XCTestCase {
         XCTAssertNotNil(scoreboard)
         XCTAssertEqual(scoreboard.correctAttempts, 0)
         XCTAssertEqual(scoreboard.incorrectAttempts, 1)
-        XCTAssertEqual(scoreboard.isGameFinished, .inProgress)
+        XCTAssertEqual(scoreboard.gameState, .inProgress)
+    }
+
+    func testStartGame() throws {
+        // Arrange
+        XCTAssertEqual(scoreboard.gameState, .none)
+
+        // Act
+        scoreboard.startGame()
+
+        // Assert
+        XCTAssertEqual(scoreboard.gameState, .inProgress)
     }
 
     func testReset() throws {
@@ -68,11 +80,12 @@ class ScoreboardTests: XCTestCase {
         XCTAssertNotNil(scoreboard)
         XCTAssertEqual(scoreboard.correctAttempts, 0)
         XCTAssertEqual(scoreboard.incorrectAttempts, 0)
+        XCTAssertEqual(scoreboard.gameState, .none)
     }
 
     func testShouldGameFinishUserWon() throws {
         // Arrange
-        XCTAssertEqual(scoreboard.isGameFinished, .inProgress)
+        scoreboard.startGame()
 
         // Act
         (1...13).forEach { _ in scoreboard.gainedPoint() }
@@ -81,12 +94,12 @@ class ScoreboardTests: XCTestCase {
         // Assert
         XCTAssertEqual(scoreboard.correctAttempts, 13)
         XCTAssertEqual(scoreboard.incorrectAttempts, 2)
-        XCTAssertEqual(scoreboard.isGameFinished, .userWon)
+        XCTAssertEqual(scoreboard.gameState, .userWon)
     }
 
     func testShouldGameFinishUserLost() throws {
         // Arrange
-        XCTAssertEqual(scoreboard.isGameFinished, .inProgress)
+        scoreboard.startGame()
 
         // Act
         (1...3).forEach { _ in scoreboard.lostPoint() }
@@ -94,7 +107,7 @@ class ScoreboardTests: XCTestCase {
         // Assert
         XCTAssertEqual(scoreboard.correctAttempts, 0)
         XCTAssertEqual(scoreboard.incorrectAttempts, 3)
-        XCTAssertEqual(scoreboard.isGameFinished, .userLost)
+        XCTAssertEqual(scoreboard.gameState, .userLost)
     }
 
 }
