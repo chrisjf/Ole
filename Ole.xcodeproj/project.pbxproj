@@ -26,6 +26,9 @@
 		834B6EB525AECFC400D027A2 /* WordPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834B6EB425AECFC400D027A2 /* WordPair.swift */; };
 		834B6EBA25AED4C200D027A2 /* WordPairManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834B6EB925AED4C200D027A2 /* WordPairManagerTests.swift */; };
 		8350DAB525B012D700FC6124 /* WordPairTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8350DAB425B012D700FC6124 /* WordPairTests.swift */; };
+		8350DABA25B0DD1C00FC6124 /* GameplayState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8350DAB925B0DD1C00FC6124 /* GameplayState.swift */; };
+		8350DABF25B0E20C00FC6124 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8350DABE25B0E20C00FC6124 /* MenuView.swift */; };
+		8350DAC725B0F6BA00FC6124 /* ContentViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8350DAC625B0F6BA00FC6124 /* ContentViewTests.swift */; };
 		837F621225AFDB8A00370A61 /* GameplayControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837F621125AFDB8A00370A61 /* GameplayControllerTests.swift */; };
 		837F622025AFEC5E00370A61 /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837F621F25AFEC5E00370A61 /* Color+Extensions.swift */; };
 /* End PBXBuildFile section */
@@ -75,6 +78,9 @@
 		834B6EB425AECFC400D027A2 /* WordPair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordPair.swift; sourceTree = "<group>"; };
 		834B6EB925AED4C200D027A2 /* WordPairManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordPairManagerTests.swift; sourceTree = "<group>"; };
 		8350DAB425B012D700FC6124 /* WordPairTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordPairTests.swift; sourceTree = "<group>"; };
+		8350DAB925B0DD1C00FC6124 /* GameplayState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameplayState.swift; sourceTree = "<group>"; };
+		8350DABE25B0E20C00FC6124 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
+		8350DAC625B0F6BA00FC6124 /* ContentViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewTests.swift; sourceTree = "<group>"; };
 		837F621125AFDB8A00370A61 /* GameplayControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameplayControllerTests.swift; sourceTree = "<group>"; };
 		837F621F25AFEC5E00370A61 /* Color+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -130,10 +136,13 @@
 			children = (
 				837F621F25AFEC5E00370A61 /* Color+Extensions.swift */,
 				834B6E2825AE898E00D027A2 /* ContentView.swift */,
+				8350DAC625B0F6BA00FC6124 /* ContentViewTests.swift */,
 				83459A3825AFAE5600B665A5 /* GameplayButton.swift */,
 				834B6E9525AEBD1A00D027A2 /* GameplayView.swift */,
 				834B6EAF25AECFB500D027A2 /* GameplayController.swift */,
 				837F621125AFDB8A00370A61 /* GameplayControllerTests.swift */,
+				8350DAB925B0DD1C00FC6124 /* GameplayState.swift */,
+				8350DABE25B0E20C00FC6124 /* MenuView.swift */,
 				834B6E2625AE898E00D027A2 /* OleApp.swift */,
 				834B6E9A25AEC5EE00D027A2 /* Scoreboard.swift */,
 				834B6E9F25AEC62A00D027A2 /* ScoreboardTests.swift */,
@@ -358,9 +367,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8350DABF25B0E20C00FC6124 /* MenuView.swift in Sources */,
 				834B6E2925AE898E00D027A2 /* ContentView.swift in Sources */,
 				834B6EA825AECD5F00D027A2 /* WordPairManager.swift in Sources */,
 				834B6E7125AE8B9000D027A2 /* TranslationsParser.swift in Sources */,
+				8350DABA25B0DD1C00FC6124 /* GameplayState.swift in Sources */,
 				83459A3925AFAE5600B665A5 /* GameplayButton.swift in Sources */,
 				834B6E2725AE898E00D027A2 /* OleApp.swift in Sources */,
 				834B6E9B25AEC5EF00D027A2 /* Scoreboard.swift in Sources */,
@@ -379,6 +390,7 @@
 				834B6E7625AE8BA100D027A2 /* TranslationsParserTests.swift in Sources */,
 				837F621225AFDB8A00370A61 /* GameplayControllerTests.swift in Sources */,
 				834B6E3925AE899000D027A2 /* OleTests.swift in Sources */,
+				8350DAC725B0F6BA00FC6124 /* ContentViewTests.swift in Sources */,
 				8350DAB525B012D700FC6124 /* WordPairTests.swift in Sources */,
 				834B6EA025AEC62A00D027A2 /* ScoreboardTests.swift in Sources */,
 				834B6EBA25AED4C200D027A2 /* WordPairManagerTests.swift in Sources */,

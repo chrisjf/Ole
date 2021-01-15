@@ -27,6 +27,9 @@ class ScoreboardTests: XCTestCase {
     }
 
     func testGainPoint() throws {
+        // Arrange
+        XCTAssertEqual(scoreboard.isGameFinished, .inProgress)
+
         // Act
         scoreboard.gainedPoint()
 
@@ -34,9 +37,13 @@ class ScoreboardTests: XCTestCase {
         XCTAssertNotNil(scoreboard)
         XCTAssertEqual(scoreboard.correctAttempts, 1)
         XCTAssertEqual(scoreboard.incorrectAttempts, 0)
+        XCTAssertEqual(scoreboard.isGameFinished, .inProgress)
     }
 
     func testLoosePoint() throws {
+        // Arrange
+        XCTAssertEqual(scoreboard.isGameFinished, .inProgress)
+
         // Act
         scoreboard.lostPoint()
 
@@ -44,6 +51,7 @@ class ScoreboardTests: XCTestCase {
         XCTAssertNotNil(scoreboard)
         XCTAssertEqual(scoreboard.correctAttempts, 0)
         XCTAssertEqual(scoreboard.incorrectAttempts, 1)
+        XCTAssertEqual(scoreboard.isGameFinished, .inProgress)
     }
 
     func testReset() throws {
@@ -60,6 +68,33 @@ class ScoreboardTests: XCTestCase {
         XCTAssertNotNil(scoreboard)
         XCTAssertEqual(scoreboard.correctAttempts, 0)
         XCTAssertEqual(scoreboard.incorrectAttempts, 0)
+    }
+
+    func testShouldGameFinishUserWon() throws {
+        // Arrange
+        XCTAssertEqual(scoreboard.isGameFinished, .inProgress)
+
+        // Act
+        (1...13).forEach { _ in scoreboard.gainedPoint() }
+        (1...2).forEach { _ in scoreboard.lostPoint() }
+
+        // Assert
+        XCTAssertEqual(scoreboard.correctAttempts, 13)
+        XCTAssertEqual(scoreboard.incorrectAttempts, 2)
+        XCTAssertEqual(scoreboard.isGameFinished, .userWon)
+    }
+
+    func testShouldGameFinishUserLost() throws {
+        // Arrange
+        XCTAssertEqual(scoreboard.isGameFinished, .inProgress)
+
+        // Act
+        (1...3).forEach { _ in scoreboard.lostPoint() }
+
+        // Assert
+        XCTAssertEqual(scoreboard.correctAttempts, 0)
+        XCTAssertEqual(scoreboard.incorrectAttempts, 3)
+        XCTAssertEqual(scoreboard.isGameFinished, .userLost)
     }
 
 }

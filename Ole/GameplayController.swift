@@ -5,6 +5,7 @@
 //  Created by Christopher Forbes on 2021-01-13.
 //
 
+import Combine
 import Foundation
 
 /**
@@ -13,21 +14,27 @@ import Foundation
 class GameplayController: ObservableObject {
 
     @Published private(set) var currentWordPair: WordPair
+    @Published private(set) var gameplayTimerSubscription: AnyCancellable?
     @Published var scoreboard = Scoreboard()
 
+    private let gameplayTimer: Timer.TimerPublisher = Timer.publish(every: 5, on: .main, in: .common)
     private let wordPairManager: PairManager
 
     init(wordPairManager: PairManager = WordPairManager.shared) {
         self.wordPairManager = wordPairManager
         self.currentWordPair = wordPairManager.newWordPair()
+
+        resetTimer()
     }
 
     func tappedCorrectForCurrentWordPair() {
         compareAnswersAndUpdateGameplay(usersAnswer: true)
+        resetTimer()
     }
 
     func tappedIncorrectForCurrentWordPair() {
         compareAnswersAndUpdateGameplay(usersAnswer: false)
+        resetTimer()
     }
 
     private func compareAnswersAndUpdateGameplay(usersAnswer: Bool) {
@@ -49,6 +56,21 @@ class GameplayController: ObservableObject {
         } while newWordPair == currentWordPair
 
         currentWordPair = newWordPair
+    }
+
+    func resetTimer() {
+        // stop the timer
+        gameplayTimerSubscription = nil
+
+        // reset the timer
+        gameplayTimerSubscription = gameplayTimer.autoconnect().sink(receiveValue: { _ in
+            self.timeRanOut()
+        })
+    }
+
+    func timeRanOut() {
+        scoreboard.lostPoint()
+        pickNewWordPair()
     }
 
 }

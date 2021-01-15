@@ -8,9 +8,28 @@
 import SwiftUI
 
 struct ContentView: View {
-    var body: some View {
-        GameplayView()
+
+    @ObservedObject private(set) var gameplayController: GameplayController
+    private let gameplayView: GameplayView
+
+    init(gameplayView: GameplayView = GameplayView()) {
+        self.gameplayView = gameplayView
+        self.gameplayController = gameplayView.gameplayController
     }
+
+    var gameIsCurrentlyInProgress: Bool {
+        return gameplayController.scoreboard.isGameFinished == .inProgress
+    }
+
+    var body: some View {
+        if gameIsCurrentlyInProgress {
+            gameplayView
+        } else {
+            MenuView(gameState: .init(get: { gameplayController.scoreboard.isGameFinished },
+                                      set: { gameplayController.scoreboard.isGameFinished = $0}))
+        }
+    }
+
 }
 
 struct ContentView_Previews: PreviewProvider {

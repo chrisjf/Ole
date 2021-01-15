@@ -29,6 +29,7 @@ class GameplayControllerTests: XCTestCase {
         XCTAssertNotNil(controller)
         XCTAssertNotNil(controller.currentWordPair)
         XCTAssertNotNil(controller.scoreboard)
+        XCTAssertNotNil(controller.gameplayTimerSubscription)
     }
 
     func testTappedCorrectForCurrentWordPairAndUserAnsweredCorrectly() throws {
@@ -86,6 +87,27 @@ class GameplayControllerTests: XCTestCase {
         XCTAssertEqual(controller.scoreboard.incorrectAttempts, 1)
         XCTAssertNotEqual(wordPair1, controller.currentWordPair)
     }
+
+    func testResetTimer() throws {
+        // Act
+        controller.resetTimer()
+
+        // Assert
+        XCTAssertNotNil(controller.gameplayTimerSubscription)
+    }
+
+    func testTimeRanOut() throws {
+        // Arrange
+        XCTAssertEqual(wordPair1, controller.currentWordPair)
+
+        // Act
+        controller.timeRanOut()
+
+        // Assert
+        XCTAssertEqual(controller.scoreboard.incorrectAttempts, 1)
+        XCTAssertNotEqual(wordPair1, controller.currentWordPair)
+    }
+
 }
 
 private class WordPairManagerMock: PairManager {
