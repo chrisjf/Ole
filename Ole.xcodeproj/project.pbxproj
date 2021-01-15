@@ -89,6 +89,7 @@
 		8350DAD925B16B4900FC6124 /* FallingTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FallingTextView.swift; sourceTree = "<group>"; };
 		837F621125AFDB8A00370A61 /* GameplayControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameplayControllerTests.swift; sourceTree = "<group>"; };
 		837F621F25AFEC5E00370A61 /* Color+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
+		83CA5A1A25B1C7B100D8A0A3 /* readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = readme.md; sourceTree = "<group>"; };
 		83E5838425B17C4900785976 /* FallingTextViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FallingTextViewTests.swift; sourceTree = "<group>"; };
 		83E5838925B17D7300785976 /* SummaryAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummaryAlertView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -201,6 +202,7 @@
 		834B6E5425AE899B00D027A2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				83CA5A1A25B1C7B100D8A0A3 /* readme.md */,
 				834B6E8525AE92B400D027A2 /* words.json */,
 				834B6E5525AE89B400D027A2 /* .gitignore */,
 				834B6E5A25AE89BC00D027A2 /* .swiftlint.yml */,
